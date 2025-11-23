@@ -74,6 +74,10 @@ UISI e-library
 - Status: sedang dipinjam / sudah dikembalikan.
 - Bisa dipakai untuk tracking aktivitas pengguna.
 
+6. 📌 Bookmark
+- Pengguna bisa menandai buku favorit.
+- Buku yang di‑bookmark muncul di daftar khusus.
+- Memudahkan akses cepat ke buku favorit.
 
 
 
