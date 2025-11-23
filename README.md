@@ -42,6 +42,9 @@ Aplikasi perpustakaan digital berbasis Flutter yang memungkinkan pengguna untuk 
 ## Vudio demo
 https://drive.google.com/file/d/1NLao_ZLqwqVMfKGxjWVExPpCZHN6Zf1L/view?usp=drivesdk
 
+##Inspirasi Desain
+UISI e-library
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
