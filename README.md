@@ -1,3 +1,26 @@
+## 📸 Tampilan Aplikasi
+
+### 🔐 Login
+![Login](assets/login.jpeg)
+
+### 🏠 Home Menu
+![Home Menu](assets/home%20menu.jpeg)
+
+### 📖 Deskripsi Buku
+![Deskripsi Buku](assets/deskripsi%20buku.jpeg)
+
+### 📝 Form Peminjaman
+![Form Peminjaman](assets/form%20peminjaman.jpeg)
+
+### 📌 Bookmark
+![Bookmark](assets/bookmark.jpeg)
+
+### 📂 Riwayat
+![Riwayat](assets/riwayat.jpeg)
+
+### 👤 Profil
+![Profil](assets/profile.jpeg)
+
 # 📚 Flutter E-Library App
 
 Aplikasi perpustakaan digital berbasis Flutter yang memungkinkan pengguna untuk melihat, meminjam, dan mengelola koleksi buku secara efisien.
