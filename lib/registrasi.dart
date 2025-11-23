@@ -12,7 +12,10 @@ class RegistrasiPage extends StatefulWidget {
 }
 
 class _RegistrasiPageState extends State<RegistrasiPage> {
+  // Form key untuk validasi
   final _formKey = GlobalKey<FormState>();
+
+  // Controller untuk setiap input field
   final _nameController = TextEditingController();
   final _nikdController = TextEditingController();
   final _emailController = TextEditingController();
@@ -22,6 +25,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
+  // Dispose controller saat widget dihancurkan
   @override
   void dispose() {
     _nameController.dispose();
@@ -46,11 +50,13 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // Header halaman registrasi
               const PageHeader(
                 icon: Icons.app_registration,
                 title: 'Create New Account',
               ),
 
+              // Input Nama
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(labelText: 'Nama'),
@@ -63,6 +69,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
               ),
               const SizedBox(height: 12),
 
+              // Input NIK
               TextFormField(
                 controller: _nikdController,
                 decoration: const InputDecoration(labelText: 'NIK'),
@@ -86,6 +93,8 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
                 },
               ),
               const SizedBox(height: 12),
+
+              // Input Email
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(labelText: 'Email'),
@@ -101,6 +110,8 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
                 },
               ),
               const SizedBox(height: 12),
+
+              // Input Password
               TextFormField(
                 controller: _passwordController,
                 decoration: const InputDecoration(labelText: 'Password'),
@@ -116,6 +127,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
                 },
               ),
               const SizedBox(height: 12),
+
               // Konfirmasi Password
               TextFormField(
                 controller: _confirmPasswordController,
@@ -134,6 +146,8 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
                 },
               ),
               const SizedBox(height: 12),
+
+              // Input Username
               TextFormField(
                 controller: _usernameController,
                 decoration: const InputDecoration(labelText: 'Username'),
@@ -145,6 +159,8 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
                 },
               ),
               const SizedBox(height: 12),
+
+              // Input No. Telepon
               TextFormField(
                 controller: _noteleponController,
                 decoration: const InputDecoration(labelText: 'No. Telepon'),
@@ -165,6 +181,8 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
                 },
               ),
               const SizedBox(height: 12),
+
+              // Input Alamat
               TextFormField(
                 controller: _alamatController,
                 decoration: const InputDecoration(labelText: 'Alamat'),
@@ -178,6 +196,8 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
                 },
               ),
               const SizedBox(height: 20),
+
+              // Tombol Daftar
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -191,6 +211,8 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
                       phone: _noteleponController.text.trim(),
                       address: _alamatController.text.trim(),
                     );
+
+                    // Simpan user ke database
                     userRepo
                         .createUser(user)
                         .then((value) {
