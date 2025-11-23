@@ -59,6 +59,12 @@ UISI e-library
 - Menampilkan menu utama aplikasi.
 - Navigasi ke fitur: Deskripsi Buku, Form Peminjaman, Riwayat, Bookmark, Profi.
 
+3. 📖 Deskripsi Buku
+- Pengguna memilih buku dari daftar.
+- Detail buku ditampilkan: judul, penulis, kategori, deskripsi.
+- Ada opsi Pinjam Buku → diarahkan ke Form Peminjaman.
+
+
 
 
 
