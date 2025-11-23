@@ -16,30 +16,37 @@ class DetailBukuPage extends StatefulWidget {
 }
 
 class _DetailBukuPageState extends State<DetailBukuPage> {
+  // Status bookmark buku
   bool isBookmarked = false;
+
+  // Repository untuk bookmark
   final _bookmarkRepo = BookmarkRepository();
 
   @override
   void initState() {
     super.initState();
-    _initBookmark();
+    _initBookmark(); // Cek apakah buku sudah di-bookmark
   }
 
+  // Fungsi untuk mengecek status bookmark dari database
   Future<void> _initBookmark() async {
     final userId = AuthService.instance.currentUserId;
     if (userId == null) {
       setState(() => isBookmarked = false);
       return;
     }
+
     final db = await DatabaseHelper.instance.database;
     final rows = await db.rawQuery(
       'SELECT id FROM books WHERE title = ? LIMIT 1',
       [widget.buku.title],
     );
+
     if (rows.isEmpty) {
       setState(() => isBookmarked = false);
       return;
     }
+
     final bookId = rows.first['id'] as int;
     final bookmarked = await _bookmarkRepo.isBookmarked(userId, bookId);
     setState(() => isBookmarked = bookmarked);
@@ -59,6 +66,7 @@ class _DetailBukuPageState extends State<DetailBukuPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // Gambar sampul buku
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
@@ -69,11 +77,15 @@ class _DetailBukuPageState extends State<DetailBukuPage> {
               ),
             ),
             const SizedBox(height: 20),
+
+            // Judul buku
             Text(
               buku.title,
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
+
+            // Penulis dan biaya pinjam
             Text(
               'Penulis: ${buku.author}',
               style: const TextStyle(fontSize: 16),
@@ -83,6 +95,8 @@ class _DetailBukuPageState extends State<DetailBukuPage> {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 30),
+
+            // Status ketersediaan buku
             Text(
               buku.tersedia ? 'Status: Tersedia' : 'Status: Tidak Tersedia',
               style: TextStyle(
@@ -94,6 +108,8 @@ class _DetailBukuPageState extends State<DetailBukuPage> {
               ),
             ),
             const SizedBox(height: 20),
+
+            // Genre dan sinopsis
             const Text(
               "Genre",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -106,6 +122,8 @@ class _DetailBukuPageState extends State<DetailBukuPage> {
               style: const TextStyle(fontSize: 14),
             ),
             const SizedBox(height: 30),
+
+            // Tombol Bookmark dan Pinjam Buku
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -121,12 +139,16 @@ class _DetailBukuPageState extends State<DetailBukuPage> {
                       );
                       return;
                     }
+
                     setState(() => isBookmarked = !isBookmarked);
+
                     if (isBookmarked) {
+                      // Tambahkan ke bookmark
                       final bookRepo = BookRepository();
                       final insertedId = await bookRepo.insertBook(widget.buku);
                       await _bookmarkRepo.addBookmark(userId, insertedId);
                     } else {
+                      // Hapus dari bookmark
                       final db = await DatabaseHelper.instance.database;
                       final rows = await db.rawQuery(
                         'SELECT id FROM books WHERE title = ? LIMIT 1',
@@ -137,6 +159,8 @@ class _DetailBukuPageState extends State<DetailBukuPage> {
                         await _bookmarkRepo.removeBookmark(userId, bookId);
                       }
                     }
+
+                    // Tampilkan notifikasi
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
