@@ -69,6 +69,12 @@ UISI e-library
 - Submit → data tersimpan ke sistem.
 - Setelah berhasil → diarahkan ke Riwayat Peminjaman.
 
+5. 📂 Riwayat Peminjaman
+- Menampilkan daftar buku yang pernah dipinjam.
+- Status: sedang dipinjam / sudah dikembalikan.
+- Bisa dipakai untuk tracking aktivitas pengguna.
+
+
 
 
 
