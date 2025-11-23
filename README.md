@@ -49,9 +49,15 @@ UISI e-library
 
 ## 📸 Tampilan Aplikasi
 
-### 🔐 Login
-Halaman login digunakan untuk masuk ke aplikasi dengan akun yang sudah terdaftar.  
-![Login](assets/login.jpeg)
+## Alur penggunaan
+1. 🔐 Login
+- Pengguna masuk dengan akun yang sudah terdaftar.
+- Validasi username & password.
+- Kalau berhasil → diarahkan ke Home Menu.
+
+
+
+
 
 
 samples, guidance on mobile development, and a full API reference.
