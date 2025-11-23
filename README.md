@@ -55,6 +55,11 @@ UISI e-library
 - Validasi username & password.
 - Kalau berhasil → diarahkan ke Home Menu.
 
+2. 🏠 Home Menu
+- Menampilkan menu utama aplikasi.
+- Navigasi ke fitur: Deskripsi Buku, Form Peminjaman, Riwayat, Bookmark, Profi.
+
+
 
 
 
