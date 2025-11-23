@@ -45,9 +45,6 @@ https://drive.google.com/file/d/1NLao_ZLqwqVMfKGxjWVExPpCZHN6Zf1L/view?usp=drive
 ##Inspirasi Desain
 UISI e-library
 
-# 📚 Aplikasi Perpustakaan Digital
-
-## 📸 Tampilan Aplikasi
 
 ## Alur penggunaan
 1. 🔐 Login
@@ -79,11 +76,6 @@ UISI e-library
 - Buku yang di‑bookmark muncul di daftar khusus.
 - Memudahkan akses cepat ke buku favorit.
 
+7. 👤 Profil
+- Menampilkan data pengguna (nama, email, dll).
 
-
-
-
-
-
-
-samples, guidance on mobile development, and a full API reference.
