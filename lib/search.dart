@@ -10,21 +10,25 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  // Controller untuk input pencarian
   final TextEditingController _searchController = TextEditingController();
+
+  // List hasil pencarian
   List<InfoBuku> _searchResults = [];
 
   @override
   void initState() {
     super.initState();
-    _searchResults = daftarBuku;
+    _searchResults = daftarBuku; // Default tampilkan semua buku
   }
 
   @override
   void dispose() {
-    _searchController.dispose();
+    _searchController.dispose(); // Bersihkan controller saat widget dihancurkan
     super.dispose();
   }
 
+  // Fungsi untuk melakukan pencarian berdasarkan judul, penulis, atau genre
   void _performSearch(String query) {
     setState(() {
       _searchResults = daftarBuku
@@ -45,6 +49,7 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: const Color.fromARGB(255, 232, 203, 177),
       body: Column(
         children: [
+          // Input pencarian
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
@@ -59,6 +64,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
           ),
+
+          // Tampilkan hasil pencarian
           Expanded(
             child: _searchResults.isEmpty
                 ? Center(
@@ -73,7 +80,9 @@ class _SearchPageState extends State<SearchPage> {
                     itemCount: _searchResults.length,
                     itemBuilder: (context, index) {
                       final buku = _searchResults[index];
+
                       return ListTile(
+                        // Gambar sampul buku
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
                           child: Image.asset(
@@ -83,8 +92,11 @@ class _SearchPageState extends State<SearchPage> {
                             fit: BoxFit.cover,
                           ),
                         ),
+                        // Judul dan penulis
                         title: Text(buku.title),
                         subtitle: Text(buku.author),
+
+                        // Navigasi ke halaman detail buku
                         onTap: () {
                           Navigator.push(
                             context,
