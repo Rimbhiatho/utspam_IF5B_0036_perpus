@@ -7,7 +7,7 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Manual pembagian kategori
+    // Manual pembagian kategori berdasarkan judul buku
     final List<InfoBuku> fiksi = [
       daftarBuku[1], // Bulan
       daftarBuku[2], // Bumi
@@ -29,6 +29,7 @@ class HomeTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Gambar banner utama
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
@@ -51,6 +52,7 @@ class HomeTab extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
+          // List horizontal buku fiksi
           SizedBox(
             height: 180,
             child: ListView(
@@ -71,6 +73,7 @@ class HomeTab extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
+          // List horizontal buku non-fiksi
           SizedBox(
             height: 180,
             child: ListView(
@@ -86,6 +89,7 @@ class HomeTab extends StatelessWidget {
   }
 }
 
+// Widget untuk menampilkan thumbnail buku
 class BookThumbnail extends StatelessWidget {
   final InfoBuku buku;
 
@@ -94,6 +98,7 @@ class BookThumbnail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      // Navigasi ke halaman detail buku saat thumbnail ditekan
       onTap: () {
         Navigator.push(
           context,
