@@ -11,17 +11,21 @@ class ProfileTab extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 51, 58, 68),
       body: FutureBuilder<UserModel?>(
+        // Ambil data user yang sedang login
         future: () async {
           final id = AuthService.instance.currentUserId;
           if (id == null) return null;
           return UserRepository().getUserById(id);
         }(),
         builder: (context, snapshot) {
+          // Tampilkan loading saat data belum selesai diambil
           if (snapshot.connectionState != ConnectionState.done) {
             return const Center(child: CircularProgressIndicator());
           }
 
           final user = snapshot.data;
+
+          // Tentukan nama yang ditampilkan
           final displayName =
               (user?.username != null && user!.username.isNotEmpty)
               ? user.username
@@ -29,7 +33,7 @@ class ProfileTab extends StatelessWidget {
 
           return Column(
             children: [
-              const _TopPortion(),
+              const _TopPortion(), // Bagian atas profil (foto dan background)
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -39,6 +43,7 @@ class ProfileTab extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // Nama pengguna
                       Center(
                         child: Text(
                           displayName,
@@ -50,6 +55,8 @@ class ProfileTab extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
+
+                      // Email pengguna
                       Center(
                         child: Text(
                           user?.email ?? '',
@@ -57,6 +64,8 @@ class ProfileTab extends StatelessWidget {
                         ),
                       ),
                       const Divider(height: 32, thickness: 1),
+
+                      // Informasi detail pengguna
                       _infoRow("Nama Lengkap", user?.name),
                       _infoRow("Email", user?.email),
                       _infoRow("Alamat", user?.address),
@@ -72,6 +81,7 @@ class ProfileTab extends StatelessWidget {
     );
   }
 
+  // Widget untuk menampilkan baris informasi profil
   Widget _infoRow(String label, String? value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -92,6 +102,7 @@ class ProfileTab extends StatelessWidget {
   }
 }
 
+// Bagian atas profil: background dan foto profil
 class _TopPortion extends StatelessWidget {
   const _TopPortion();
 
@@ -102,6 +113,7 @@ class _TopPortion extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
+          // Background gradasi
           Container(
             margin: const EdgeInsets.only(bottom: 50),
             decoration: const BoxDecoration(
@@ -119,6 +131,7 @@ class _TopPortion extends StatelessWidget {
               ),
             ),
           ),
+          // Foto profil bulat di tengah bawah
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
@@ -127,6 +140,7 @@ class _TopPortion extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
+                  // Gambar profil
                   Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
@@ -136,6 +150,7 @@ class _TopPortion extends StatelessWidget {
                       ),
                     ),
                   ),
+                  // Indikator status aktif (lingkaran hijau kecil)
                   Positioned(
                     bottom: 0,
                     right: 0,
