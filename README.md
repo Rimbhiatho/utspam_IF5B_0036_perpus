@@ -64,6 +64,11 @@ UISI e-library
 - Detail buku ditampilkan: judul, penulis, kategori, deskripsi.
 - Ada opsi Pinjam Buku → diarahkan ke Form Peminjaman.
 
+4. 📝 Form Peminjaman
+- Pengguna mengisi data peminjaman (, jumlah hari, tanggal).
+- Submit → data tersimpan ke sistem.
+- Setelah berhasil → diarahkan ke Riwayat Peminjaman.
+
 
 
 
