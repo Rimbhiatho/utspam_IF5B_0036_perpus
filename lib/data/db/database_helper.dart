@@ -5,12 +5,14 @@ import 'package:path/path.dart';
 import '../model/infobuku.dart';
 
 class DatabaseHelper {
+  // Singleton instance agar hanya ada satu koneksi database
   static final DatabaseHelper instance = DatabaseHelper._init();
 
   static Database? _database;
 
   DatabaseHelper._init();
 
+  // Getter untuk mendapatkan database, jika belum ada maka dibuat baru
   Future<Database> get database async {
     if (_database != null) return _database!;
     _database = await _initDB('perpus.db');
@@ -29,7 +31,10 @@ class DatabaseHelper {
     );
   }
 
+  // Membuat tabel-tabel utama aplikasi
   Future _createDB(Database db, int version) async {
+    // Tabel users: menyimpan data pengguna
+
     await db.execute('''
     CREATE TABLE users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,7 +48,7 @@ class DatabaseHelper {
       createdAt INTEGER
     )
     ''');
-
+    // Tabel loans: menyimpan data peminjaman buku
     await db.execute('''
     CREATE TABLE books (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -57,6 +62,7 @@ class DatabaseHelper {
     )
     ''');
 
+    // Tabel riwayat: mencatat aktivitas user terhadap buku
     await db.execute('''
     CREATE TABLE loans (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,6 +78,7 @@ class DatabaseHelper {
     )
     ''');
 
+    // Tabel bookmarks: menyimpan buku favorit user
     await db.execute('''
     CREATE TABLE riwayat (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -85,6 +92,7 @@ class DatabaseHelper {
     )
     ''');
 
+    // Upgrade database jika versi berubah
     await db.execute('''
     CREATE TABLE bookmarks (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -126,6 +134,7 @@ class DatabaseHelper {
     }
   }
 
+  // Seed data awal buku jika tabel books masih kosong
   Future<void> seedInitialData(List<InfoBuku> daftarBuku) async {
     final db = await instance.database;
     final count = Sqflite.firstIntValue(
@@ -145,6 +154,7 @@ class DatabaseHelper {
     return await db.insert(table, values);
   }
 
+  // Fungsi CRUD umum
   Future<int> update(
     String table,
     Map<String, dynamic> values,
@@ -184,6 +194,7 @@ class DatabaseHelper {
     );
   }
 
+  // Menutup koneksi database
   Future close() async {
     final db = _database;
     if (db != null) await db.close();
